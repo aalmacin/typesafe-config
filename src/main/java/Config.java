@@ -5,7 +5,8 @@ public class Config {
     private static Config config;
 
     private Config() {
-        typeSafeConfig = ConfigFactory.parseResources("dev.conf");
+        String environment = System.getenv().getOrDefault("CONFIG_ENV", "dev");
+        typeSafeConfig = ConfigFactory.parseResources(environment + ".conf");
     }
 
     public static Config instance() {
